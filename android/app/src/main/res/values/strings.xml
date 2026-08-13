@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Đàn Tranh</string>
+    <string name="app_name">Học Đàn Tranh - Guzheng - Đan Thanh</string>
+
+    <!-- Tab bar — order must match iOS MainTabView -->
+    <string name="tab_lessons">Khóa học</string>
+    <string name="tab_video">Video</string>
+    <string name="tab_tuner">Lên dây</string>
+    <string name="tab_sheet">Sheet</string>
+    <string name="tab_settings">Cài đặt</string>
+
+    <!-- Placeholder screen copy, replaced in Plan 2 -->
+    <string name="screen_coming_soon">Đang phát triển</string>
 </resources>
