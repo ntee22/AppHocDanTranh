@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "618920959271",
+    "project_id": "apphocdantranh",
+    "storage_bucket": "apphocdantranh.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618920959271:android:26a365e4fdd12ee7259d02",
+        "android_client_info": {
+          "package_name": "vn.hocdantranh.guzheng"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1L-Tr__tcoEZ4vaTSX0ffP5EJtE0EGrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
