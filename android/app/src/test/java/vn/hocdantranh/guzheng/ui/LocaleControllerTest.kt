@@ -1,8 +1,10 @@
 package vn.hocdantranh.guzheng.ui
 
+import androidx.appcompat.app.AppCompatActivity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import vn.hocdantranh.guzheng.data.prefs.AppPrefs
@@ -36,5 +38,23 @@ class LocaleControllerTest {
         LocaleController.apply(AppPrefs.EN)
         LocaleController.apply(AppPrefs.VI)
         assertEquals("vi", LocaleController.currentLanguage())
+    }
+
+    // Everything above runs on the class-level @Config(sdk = 30) override, which only
+    // exercises AppCompatDelegate's legacy static-field path. This test overrides back
+    // to the project's real pinned sdk=35 and gives AppCompat an actual Activity-bound
+    // delegate (via Robolectric.buildActivity(...).setup()) so
+    // AppCompatDelegate.getLocaleManagerForApplication() finds a non-null delegate and
+    // routes through the real android.app.LocaleManager / ShadowLocaleManager — the
+    // code path real API 33+ users hit. Without this, a regression on the modern path
+    // could ship silently while the suite stayed green.
+    @Config(sdk = [35])
+    @Test
+    fun `applying English is readable back through the real API 33+ LocaleManager path`() {
+        Robolectric.buildActivity(AppCompatActivity::class.java).setup()
+
+        LocaleController.apply(AppPrefs.EN)
+
+        assertEquals("en", LocaleController.currentLanguage())
     }
 }
