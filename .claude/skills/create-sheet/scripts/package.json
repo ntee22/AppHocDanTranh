@@ -1,0 +1,9 @@
+{
+  "name": "dantranh-firestore-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Admin scripts for the apphocdantranh Firestore `sheets` collection.",
+  "dependencies": {
+    "firebase-admin": "^14.2.0"
+  }
+}
