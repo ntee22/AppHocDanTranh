@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import vn.hocdantranh.guzheng.ui.lessons.LessonDetailRoute
 import vn.hocdantranh.guzheng.ui.lessons.LessonsRoute
 import vn.hocdantranh.guzheng.ui.theme.VintageColors
 
@@ -72,13 +73,14 @@ fun MainScaffold() {
                 )
             }
 
-            // TODO(next commit): swap for LessonDetailRoute with the YouTube player.
             composable(
                 route = LESSON_DETAIL_ROUTE,
                 arguments = listOf(navArgument(ARG_LESSON_NUMBER) { type = NavType.IntType }),
             ) { entry ->
-                val number = entry.arguments?.getInt(ARG_LESSON_NUMBER) ?: 1
-                PlaceholderScreen(title = "Bài $number")
+                LessonDetailRoute(
+                    lessonNumber = entry.arguments?.getInt(ARG_LESSON_NUMBER) ?: 1,
+                    onBack = { navController.popBackStack() },
+                )
             }
 
             Destination.entries.filterNot { it == Destination.LESSONS }.forEach { destination ->
