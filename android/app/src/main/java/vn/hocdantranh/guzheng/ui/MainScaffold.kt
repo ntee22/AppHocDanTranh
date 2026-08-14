@@ -12,10 +12,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import vn.hocdantranh.guzheng.ui.lessons.LessonsRoute
 import vn.hocdantranh.guzheng.ui.theme.VintageColors
 
 @Composable
@@ -61,7 +64,24 @@ fun MainScaffold() {
             startDestination = Destination.LESSONS.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            Destination.entries.forEach { destination ->
+            composable(Destination.LESSONS.route) {
+                LessonsRoute(
+                    onLessonClick = { lesson ->
+                        navController.navigate(lessonDetailRoute(lesson.lessonNumber))
+                    }
+                )
+            }
+
+            // TODO(next commit): swap for LessonDetailRoute with the YouTube player.
+            composable(
+                route = LESSON_DETAIL_ROUTE,
+                arguments = listOf(navArgument(ARG_LESSON_NUMBER) { type = NavType.IntType }),
+            ) { entry ->
+                val number = entry.arguments?.getInt(ARG_LESSON_NUMBER) ?: 1
+                PlaceholderScreen(title = "Bài $number")
+            }
+
+            Destination.entries.filterNot { it == Destination.LESSONS }.forEach { destination ->
                 composable(destination.route) {
                     PlaceholderScreen(title = stringResource(destination.labelRes))
                 }

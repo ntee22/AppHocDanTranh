@@ -9,6 +9,48 @@
     <string name="tab_sheet">Sheet</string>
     <string name="tab_settings">Cài đặt</string>
 
-    <!-- Placeholder screen copy, replaced in Plan 2 -->
+    <!-- Placeholder screen copy, replaced tab by tab -->
     <string name="screen_coming_soon">Đang phát triển</string>
+
+    <!-- Lessons masthead. The hero lines and the 卷 一 mark stay as-is in both locales,
+         exactly as on iOS. -->
+    <string name="lessons_volume_mark">卷 一</string>
+    <string name="lessons_volume_one">Volume One</string>
+    <string name="lessons_hero_line1">Hành trình</string>
+    <string name="lessons_hero_line2">Đàn Tranh</string>
+    <string name="lessons_blurb">Khóa học online tại nhà do Đan Thanh Đàn Tranh và người thầm lặng đứng sau xây dựng nên 🍵 Mong mọi người ở phương xa đều có thể chinh phục đàn Guzheng nhé. Chúc bạn học vui 🥰</string>
+
+    <!-- Progress card -->
+    <string name="lessons_progress_in_progress">📖 Đang học</string>
+    <string name="lessons_progress_done">🎉 Hoàn thành</string>
+    <string name="lessons_all_done">Bạn đã hoàn thành tất cả! 🥳</string>
+    <string name="lessons_next">Tiếp</string>
+    <string name="lessons_progress_ratio">%1$d trên %2$d bài học miễn phí đã mở</string>
+
+    <!-- Section header -->
+    <string name="lessons_contents">Mục lục</string>
+    <string name="lessons_all_lessons">Tất cả bài học 🎼</string>
+
+    <!-- Lesson rows -->
+    <string name="lesson_badge_free">Miễn phí</string>
+    <string name="lesson_badge_coming_soon">Coming Soon</string>
+    <string name="lesson_locked">Chưa mở khóa</string>
+
+    <!-- Lesson detail -->
+    <string name="lesson_detail_prefix">Bài %1$s · %2$s</string>
+    <string name="lesson_badge_free_marked">✦ Miễn phí</string>
+    <string name="lesson_badge_coming_soon_marked">⏳ Coming Soon</string>
+    <string name="lesson_coming_soon_title">Bài học sắp ra mắt 🚧</string>
+    <string name="lesson_coming_soon_body">Hãy hoàn thành các bài trước rồi quay lại nhé!\nĐan Thanh đang dồn sức lực để làm bài này cho bạn 🎬</string>
+    <string name="lesson_youll_learn">Bạn sẽ học được</string>
+    <string name="lesson_practice_tips">Practice tips · Lời khuyên</string>
+    <string name="lesson_fun_fact">Thú vị đó!</string>
+    <string name="lesson_default_description">%1$s. Hãy ngồi đúng tư thế, thả lỏng vai và để những ngón tay chạm nhẹ vào dây — đừng căng thẳng như thi đại học nhé! 😄</string>
+    <string name="lesson_default_tip_1">🪑 Ngồi thẳng, vai buông thả tự nhiên — hãy tưởng tượng bạn đang ngồi thiền.</string>
+    <string name="lesson_default_tip_2">⏰ Luyện 10 phút mỗi ngày còn hơn 1 giờ cuối tuần. Kiên nhẫn là bí kíp số 1!</string>
+    <string name="lesson_back">Quay lại</string>
+
+    <!-- Player -->
+    <string name="lesson_player_error">Video không thể phát trong ứng dụng</string>
+    <string name="lesson_watch_on_youtube">Xem trên YouTube ↗</string>
 </resources>

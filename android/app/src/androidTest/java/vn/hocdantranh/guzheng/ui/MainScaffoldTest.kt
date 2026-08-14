@@ -55,6 +55,24 @@ class MainScaffoldTest {
         tabNode(R.string.tab_tuner).assertIsDisplayed()
         tabNode(R.string.tab_sheet).assertIsDisplayed()
         tabNode(R.string.tab_settings).assertIsDisplayed()
+
+        // Displayed independently isn't ordered. Read each tab's left edge in the
+        // Scaffold's root coordinate space and require strictly increasing x, so a
+        // reorder of Destination.entries (e.g. swapping SHEET and TUNER) fails this
+        // test even though every individual assertIsDisplayed() above still passes.
+        val leftEdges = listOf(
+            R.string.tab_lessons,
+            R.string.tab_video,
+            R.string.tab_tuner,
+            R.string.tab_sheet,
+            R.string.tab_settings
+        ).map { resId -> tabNode(resId).fetchSemanticsNode().boundsInRoot.left }
+
+        leftEdges.zipWithNext().forEach { (left, right) ->
+            assert(left < right) {
+                "Expected strictly increasing left-to-right tab order, got $leftEdges"
+            }
+        }
     }
 
     @Test

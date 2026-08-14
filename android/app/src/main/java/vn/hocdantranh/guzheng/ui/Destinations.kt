@@ -26,3 +26,15 @@ enum class Destination(
     SHEET("sheet", R.string.tab_sheet, Icons.Filled.Description),
     SETTINGS("settings", R.string.tab_settings, Icons.Filled.Settings)
 }
+
+/** Argument name for the lesson the detail screen shows. */
+const val ARG_LESSON_NUMBER = "lessonNumber"
+
+/**
+ * Lesson detail lives in the same NavHost as the tabs rather than a nested graph, so the
+ * bottom bar stays visible while reading a lesson — matching iOS, where the detail view is
+ * pushed inside the tab's own NavigationStack.
+ */
+const val LESSON_DETAIL_ROUTE = "lessons/{$ARG_LESSON_NUMBER}"
+
+fun lessonDetailRoute(lessonNumber: Int): String = "lessons/$lessonNumber"
