@@ -42,4 +42,17 @@
 
     <string name="lesson_player_error">This video can\'t play inside the app</string>
     <string name="lesson_watch_on_youtube">Watch on YouTube ↗</string>
+    <!-- Video tab -->
+    <string name="video_header_title">"Songs "</string>
+    <string name="video_header_accent">Guzheng</string>
+    <string name="video_header_tagline">💡 Tips &amp; Tricks</string>
+    <string name="video_overline">影片 · Video</string>
+    <string name="video_category_all">All</string>
+    <string name="video_category_intro">Intro</string>
+    <string name="video_category_songs">Songs</string>
+    <string name="video_category_tips">Tips &amp; Tricks</string>
+    <string name="video_category_tutorial">Tutorial</string>
+    <string name="video_empty">No videos yet 🎬</string>
+    <string name="video_play">Play video</string>
+    <string name="video_open_failed">Couldn\'t open the video</string>
 </resources>

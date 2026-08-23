@@ -53,4 +53,17 @@
     <!-- Player -->
     <string name="lesson_player_error">Video không thể phát trong ứng dụng</string>
     <string name="lesson_watch_on_youtube">Xem trên YouTube ↗</string>
+    <!-- Video tab -->
+    <string name="video_header_title">"Bài hát "</string>
+    <string name="video_header_accent">Guzheng</string>
+    <string name="video_header_tagline">💡 Tip &amp; Trick hữu ích</string>
+    <string name="video_overline">影片 · Video</string>
+    <string name="video_category_all">Tất cả</string>
+    <string name="video_category_intro">Giới thiệu</string>
+    <string name="video_category_songs">Bài hát</string>
+    <string name="video_category_tips">Tip &amp; Trick</string>
+    <string name="video_category_tutorial">Hướng dẫn</string>
+    <string name="video_empty">Chưa có video nào 🎬</string>
+    <string name="video_play">Phát video</string>
+    <string name="video_open_failed">Không mở được video</string>
 </resources>
