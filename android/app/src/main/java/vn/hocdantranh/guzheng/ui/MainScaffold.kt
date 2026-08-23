@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import vn.hocdantranh.guzheng.ui.lessons.LessonDetailRoute
 import vn.hocdantranh.guzheng.ui.lessons.LessonsRoute
+import vn.hocdantranh.guzheng.ui.video.VideoRoute
 import vn.hocdantranh.guzheng.ui.theme.VintageColors
 
 @Composable
@@ -83,11 +84,17 @@ fun MainScaffold() {
                 )
             }
 
-            Destination.entries.filterNot { it == Destination.LESSONS }.forEach { destination ->
-                composable(destination.route) {
-                    PlaceholderScreen(title = stringResource(destination.labelRes))
-                }
+            composable(Destination.VIDEO.route) {
+                VideoRoute()
             }
+
+            Destination.entries
+                .filterNot { it == Destination.LESSONS || it == Destination.VIDEO }
+                .forEach { destination ->
+                    composable(destination.route) {
+                        PlaceholderScreen(title = stringResource(destination.labelRes))
+                    }
+                }
         }
     }
 }
