@@ -1,5 +1,11 @@
 package vn.hocdantranh.guzheng
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 
-class DanThanhApp : Application()
+class DanThanhApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        FirebaseApp.initializeApp(this)
+    }
+}
