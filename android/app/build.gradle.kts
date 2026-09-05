@@ -41,6 +41,8 @@ android {
     }
     buildFeatures {
         compose = true
+        // Settings shows the version name; BuildConfig is the compile-time source for it.
+        buildConfig = true
     }
     testOptions {
         unitTests {

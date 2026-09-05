@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import vn.hocdantranh.guzheng.ui.lessons.LessonDetailRoute
 import vn.hocdantranh.guzheng.ui.lessons.LessonsRoute
+import vn.hocdantranh.guzheng.ui.settings.SettingsTabRoute
 import vn.hocdantranh.guzheng.ui.sheet.SheetPageZoomScreen
 import vn.hocdantranh.guzheng.ui.sheet.SheetRoute
 import vn.hocdantranh.guzheng.ui.sheet.SheetViewModel
@@ -161,11 +162,16 @@ fun MainScaffold() {
                 }
             }
 
+            composable(Destination.SETTINGS.route) {
+                SettingsTabRoute()
+            }
+
             Destination.entries
                 .filterNot {
                     it == Destination.LESSONS ||
                         it == Destination.VIDEO ||
-                        it == Destination.SHEET
+                        it == Destination.SHEET ||
+                        it == Destination.SETTINGS
                 }
                 .forEach { destination ->
                     composable(destination.route) {
