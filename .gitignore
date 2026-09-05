@@ -110,4 +110,6 @@ android/captures/
 *.apk
 *.aab
 *.keystore
+*.jks
+android/keystore.properties
 !android/gradle/wrapper/gradle-wrapper.jar

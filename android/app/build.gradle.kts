@@ -1,9 +1,25 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.services)
 }
+
+/**
+ * Upload-key credentials, kept out of git.
+ *
+ * `keystore.properties` sits next to this file and is gitignored — the release build is
+ * simply unsigned when it is absent, so a fresh clone still builds without the secret.
+ */
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { load(it) }
+    }
+}
+val hasSigningConfig = keystoreProperties.getProperty("storeFile") != null
 
 android {
     namespace = "vn.hocdantranh.guzheng"
@@ -19,8 +35,22 @@ android {
         resourceConfigurations += listOf("vi", "en")
     }
 
+    signingConfigs {
+        if (hasSigningConfig) {
+            create("release") {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            // Null when keystore.properties is missing, which yields an unsigned build
+            // rather than a build failure.
+            signingConfig = if (hasSigningConfig) signingConfigs.getByName("release") else null
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
