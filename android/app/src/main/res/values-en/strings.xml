@@ -55,4 +55,26 @@
     <string name="video_empty">No videos yet 🎬</string>
     <string name="video_play">Play video</string>
     <string name="video_open_failed">Couldn\'t open the video</string>
+    <!-- Sheet tab -->
+    <string name="sheet_overline">樂譜 · Sheet Music</string>
+    <string name="sheet_header_title">"Sheet "</string>
+    <string name="sheet_header_accent">Guzheng</string>
+    <string name="sheet_header_tagline">Hand-picked Guzheng sheet music compiled and arranged by Đan Thanh 🎶</string>
+    <string name="sheet_search_hint">Enter a song name to search</string>
+    <string name="sheet_search_clear">Clear search</string>
+    <string name="sheet_pages_count">%1$d pages</string>
+    <string name="sheet_badge_free">Free</string>
+    <string name="sheet_badge_premium">Premium</string>
+    <string name="sheet_locked">Premium sheet</string>
+    <string name="sheet_empty">No sheets yet 📭</string>
+    <string name="sheet_empty_search">No results for \"%1$s\" 🔍</string>
+    <string name="sheet_error_title">Oops, couldn\'t load 😵</string>
+    <string name="sheet_error_retry">🔄 Retry</string>
+    <string name="sheet_open">Open sheet</string>
+    <string name="sheet_back">Back</string>
+    <string name="sheet_viewer_hint">👆 Tap a page to zoom in for a closer look!</string>
+    <string name="sheet_page_load_failed">Couldn\'t load page %1$d</string>
+    <string name="sheet_page_number">Page %1$d</string>
+    <string name="sheet_zoom_hint">🤏 Pinch to zoom · 👆👆 Double-tap to reset</string>
+    <string name="sheet_zoom_close">Close</string>
 </resources>

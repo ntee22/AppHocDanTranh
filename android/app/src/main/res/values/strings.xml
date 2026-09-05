@@ -66,4 +66,26 @@
     <string name="video_empty">Chưa có video nào 🎬</string>
     <string name="video_play">Phát video</string>
     <string name="video_open_failed">Không mở được video</string>
+    <!-- Sheet tab -->
+    <string name="sheet_overline">樂譜 · Sheet Nhạc</string>
+    <string name="sheet_header_title">"Sheet "</string>
+    <string name="sheet_header_accent">Guzheng</string>
+    <string name="sheet_header_tagline">Những sheet Guzheng tinh tuyển được Đan Thanh biên soạn và sưu tầm cho mọi người 🎶</string>
+    <string name="sheet_search_hint">Nhập tên bài hát bạn muốn tìm</string>
+    <string name="sheet_search_clear">Xoá tìm kiếm</string>
+    <string name="sheet_pages_count">%1$d trang</string>
+    <string name="sheet_badge_free">Miễn phí</string>
+    <string name="sheet_badge_premium">Premium</string>
+    <string name="sheet_locked">Sheet premium</string>
+    <string name="sheet_empty">Chưa có sheet nào cả 📭</string>
+    <string name="sheet_empty_search">Không tìm thấy \"%1$s\" 🔍</string>
+    <string name="sheet_error_title">Ối, tải không được rồi 😵</string>
+    <string name="sheet_error_retry">🔄 Thử lại</string>
+    <string name="sheet_open">Mở sheet</string>
+    <string name="sheet_back">Quay lại</string>
+    <string name="sheet_viewer_hint">👆 Nhấn vào trang để phóng to xem cho rõ nhé!</string>
+    <string name="sheet_page_load_failed">Không thể tải trang %1$d</string>
+    <string name="sheet_page_number">Trang %1$d</string>
+    <string name="sheet_zoom_hint">🤏 Chụm để phóng to · 👆👆 Nhấp đúp để reset</string>
+    <string name="sheet_zoom_close">Đóng</string>
 </resources>
