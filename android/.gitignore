@@ -1,0 +1,5 @@
+
+# Android upload-key credentials — must never be committed
+keystore.properties
+*.jks
+*.keystore
