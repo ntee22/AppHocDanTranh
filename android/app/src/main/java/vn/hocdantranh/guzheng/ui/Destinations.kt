@@ -38,3 +38,30 @@ const val ARG_LESSON_NUMBER = "lessonNumber"
 const val LESSON_DETAIL_ROUTE = "lessons/{$ARG_LESSON_NUMBER}"
 
 fun lessonDetailRoute(lessonNumber: Int): String = "lessons/$lessonNumber"
+
+/** Argument names for the sheet viewer and its page zoom. */
+const val ARG_SHEET_ID = "sheetId"
+const val ARG_PAGE_INDEX = "pageIndex"
+
+/**
+ * The sheet viewer and page zoom are presented full-screen, hiding the bottom bar —
+ * iOS shows them in a `fullScreenCover`, which covers the tab bar. This is the opposite
+ * of [LESSON_DETAIL_ROUTE], which keeps the bar because iOS pushes it inside the tab's
+ * own NavigationStack.
+ */
+const val SHEET_VIEWER_ROUTE = "sheet/{$ARG_SHEET_ID}"
+const val SHEET_PAGE_ROUTE = "sheet/{$ARG_SHEET_ID}/page/{$ARG_PAGE_INDEX}"
+
+fun sheetViewerRoute(sheetId: String): String = "sheet/$sheetId"
+
+fun sheetPageRoute(sheetId: String, pageIndex: Int): String = "sheet/$sheetId/page/$pageIndex"
+
+/**
+ * Whether [route] hides the bottom navigation bar.
+ *
+ * Compares whole route patterns rather than prefixes: `sheet` (the tab) is a prefix of
+ * `sheet/{sheetId}` (the viewer), so a `startsWith` test would wrongly hide the bar on the
+ * library list itself. Add future full-screen destinations here.
+ */
+fun isFullScreenRoute(route: String?): Boolean =
+    route == SHEET_VIEWER_ROUTE || route == SHEET_PAGE_ROUTE
