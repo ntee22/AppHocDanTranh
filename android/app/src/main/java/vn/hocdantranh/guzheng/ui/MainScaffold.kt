@@ -2,6 +2,7 @@ package vn.hocdantranh.guzheng.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -14,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -62,7 +64,20 @@ fun MainScaffold() {
                                 }
                             },
                             icon = { Icon(destination.icon, contentDescription = label) },
-                            label = { Text(label) },
+                            label = {
+                                // One line, at labelSmall. Five tabs on a 320dp screen
+                                // leave each item ~64dp, and the longest Vietnamese label
+                                // ("Khóa học") wraps to two lines at labelMedium — which
+                                // overflows NavigationBar's fixed 80dp height rather than
+                                // growing it. 320dp is reachable on any phone whose owner
+                                // raises Display size or Font size, not just small ones.
+                                Text(
+                                    label,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                    style = MaterialTheme.typography.labelSmall,
+                                )
+                            },
                             colors = NavigationBarItemDefaults.colors(
                                 selectedIconColor = VintageColors.sageDark,
                                 selectedTextColor = VintageColors.sageDark,
