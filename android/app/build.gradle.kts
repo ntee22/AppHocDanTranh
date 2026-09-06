@@ -29,8 +29,8 @@ android {
         applicationId = "vn.hocdantranh.guzheng"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resourceConfigurations += listOf("vi", "en")
     }
@@ -53,6 +53,14 @@ android {
             signingConfig = if (hasSigningConfig) signingConfigs.getByName("release") else null
             isMinifyEnabled = true
             isShrinkResources = true
+
+            // The bundle carries native libraries it never asked for — androidx.graphics.path
+            // and DataStore each ship a .so per ABI. Uploading their debug symbols is what
+            // lets Play symbolicate a native crash instead of showing a raw address, and it
+            // clears the missing-symbols warning on every upload.
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
