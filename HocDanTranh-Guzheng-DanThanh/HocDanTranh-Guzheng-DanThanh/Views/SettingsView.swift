@@ -299,8 +299,8 @@ struct SettingsView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.top, 24)
-                    .padding(.bottom, 110)
                 }
+                .readableContentWidth()
             }
         }
     }

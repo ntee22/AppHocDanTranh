@@ -25,7 +25,9 @@ struct VideoScreen: View {
 
                 VStack(spacing: 0) {
                     header
+                        .readableContentWidth()
                     categoryChips
+                        .readableContentWidth()
 
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 0) {
@@ -33,6 +35,7 @@ struct VideoScreen: View {
                             loadMoreTrigger
                             Spacer(minLength: 20)
                         }
+                        .readableContentWidth()
                     }
                     .refreshable { repo.fetch() }
                 }
@@ -174,7 +177,9 @@ struct FeaturedVideoCard: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 180)
+            // Scale with the available width instead of a fixed height so
+            // 16:9 thumbnails aren't heavily cropped on wide displays.
+            .aspectRatio(16 / 9, contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             // Gradient
             .overlay {

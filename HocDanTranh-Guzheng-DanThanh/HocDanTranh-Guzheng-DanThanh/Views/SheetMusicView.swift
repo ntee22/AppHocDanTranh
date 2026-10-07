@@ -149,7 +149,9 @@ struct SheetMusicView: View {
 
             VStack(spacing: 0) {
                 header
+                    .readableContentWidth()
                 searchBar
+                    .readableContentWidth()
                 content
             }
         }
@@ -260,7 +262,7 @@ struct SheetMusicView: View {
                     ForEach(0..<6, id: \.self) { _ in SheetSkeletonCard() }
                 }
                 .padding(.horizontal, 18)
-                .padding(.bottom, 110)
+                .readableContentWidth()
             }
         } else if filtered.isEmpty {
             Spacer()
@@ -288,7 +290,7 @@ struct SheetMusicView: View {
                     }
                 }
                 .padding(.horizontal, 18)
-                .padding(.bottom, 110)
+                .readableContentWidth()
             }
             .scrollDismissesKeyboard(.interactively)
         }

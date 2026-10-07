@@ -21,6 +21,7 @@ struct SecureVideoPlayer: View {
 
     @StateObject private var playerManager = SecurePlayerManager()
     @State private var watermarkPosition: CGPoint = .zero
+    @State private var playerSize: CGSize = .zero
 
     var body: some View {
         GeometryReader { geometry in
@@ -51,6 +52,11 @@ struct SecureVideoPlayer: View {
                 }
             }
             .background(Color.black)
+            .onChange(of: geometry.size) { _, newSize in
+                // The player can resize (e.g. iPhone Duo fold/unfold) —
+                // re-anchor so the watermark never ends up outside it.
+                initializeWatermarkPosition(in: newSize)
+            }
         }
         .task {
             await playerManager.loadVideo(videoID: videoID)
@@ -141,6 +147,7 @@ struct SecureVideoPlayer: View {
     // MARK: - Watermark Animation
 
     private func initializeWatermarkPosition(in size: CGSize) {
+        playerSize = size
         watermarkPosition = CGPoint(x: size.width - 100, y: 40)
     }
 
@@ -150,8 +157,8 @@ struct SecureVideoPlayer: View {
                   player.timeControlStatus == .playing else { return }
 
             withAnimation(.easeInOut(duration: 3.0)) {
-                let w = UIScreen.main.bounds.width
-                let h = UIScreen.main.bounds.height
+                let w = playerSize.width
+                let h = playerSize.height
                 let positions: [CGPoint] = [
                     CGPoint(x: 100, y: 40),
                     CGPoint(x: w - 100, y: 40),

@@ -34,6 +34,7 @@ struct HomeView: View {
                         lessonList
                         footer
                     }
+                    .readableContentWidth()
                 }
             }
             .navigationBarHidden(true)
@@ -160,7 +161,7 @@ struct HomeView: View {
                     .foregroundColor(Color.inkSoft)
                     .lineSpacing(4)
                     .padding(.top, 10)
-                    .frame(maxWidth: 280, alignment: .leading)
+                    .frame(maxWidth: 340, alignment: .leading)
             }
             .padding(.top, 56)
             .padding(.horizontal, 24)
@@ -297,7 +298,7 @@ struct LessonRow: View {
             // Thumbnail
             LessonThumb(
                 number: String(format: "%02d", lesson.lessonNumber),
-                titleEn: lesson.subtitle,
+                titleEn: "",
                 locked: !lesson.isFree,
                 accent: accent
             )

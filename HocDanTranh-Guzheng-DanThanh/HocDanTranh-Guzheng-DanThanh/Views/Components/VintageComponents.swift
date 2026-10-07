@@ -130,6 +130,18 @@ enum LessonAccent {
     }
 }
 
+// MARK: - Readable width
+
+extension View {
+    /// Caps a page at a comfortable reading width and centers it, so rows and
+    /// cards don't stretch edge to edge on wide displays (iPhone Duo inner
+    /// screen, iPad). No effect on regular iPhones, which are narrower.
+    func readableContentWidth(_ maxWidth: CGFloat = 700) -> some View {
+        frame(maxWidth: maxWidth)
+            .frame(maxWidth: .infinity)
+    }
+}
+
 /// Magazine-style lesson thumbnail with number and optional lock overlay
 struct LessonThumb: View {
     var number: String
