@@ -1,0 +1,185 @@
+{
+  "identifier" : "DanThanhStore",
+  "nonConsumableProducts" : [
+    {
+      "displayPrice" : "1490000",
+      "familySharable" : false,
+      "internalID" : "course_basic_1490k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "16 video kỹ thuật cơ bản - xem lại vô hạn",
+          "displayName" : "Khóa Học Cơ Bản",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "course_basic_1490k",
+      "referenceName" : "Khóa Học Cơ Bản",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "150000",
+      "familySharable" : false,
+      "internalID" : "song_divang_combo_150k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Video + Sheet nhạc bài Dĩ Vãng",
+          "displayName" : "Dĩ Vãng - Combo",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "song_divang_combo_150k",
+      "referenceName" : "Dĩ Vãng Combo",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "150000",
+      "familySharable" : false,
+      "internalID" : "song_lynguao_combo_150k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Video + Sheet nhạc bài Lý Ngựa Ô",
+          "displayName" : "Lý Ngựa Ô - Combo",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "song_lynguao_combo_150k",
+      "referenceName" : "Lý Ngựa Ô Combo",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "100000",
+      "familySharable" : false,
+      "internalID" : "song_divang_sheet_100k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Sheet nhạc bài Dĩ Vãng",
+          "displayName" : "Dĩ Vãng - Sheet",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "song_divang_sheet_100k",
+      "referenceName" : "Dĩ Vãng Sheet",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "100000",
+      "familySharable" : false,
+      "internalID" : "song_lynguao_sheet_100k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Sheet nhạc bài Lý Ngựa Ô",
+          "displayName" : "Lý Ngựa Ô - Sheet",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "song_lynguao_sheet_100k",
+      "referenceName" : "Lý Ngựa Ô Sheet",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "80000",
+      "familySharable" : false,
+      "internalID" : "song_divang_video_80k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Video hướng dẫn bài Dĩ Vãng",
+          "displayName" : "Dĩ Vãng - Video",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "song_divang_video_80k",
+      "referenceName" : "Dĩ Vãng Video",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "80000",
+      "familySharable" : false,
+      "internalID" : "song_lynguao_video_80k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Video hướng dẫn bài Lý Ngựa Ô",
+          "displayName" : "Lý Ngựa Ô - Video",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "song_lynguao_video_80k",
+      "referenceName" : "Lý Ngựa Ô Video",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "600000",
+      "familySharable" : false,
+      "internalID" : "bundle_5songs_600k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Gói 5 bài hát (tiết kiệm 150,000đ)",
+          "displayName" : "Gói 5 Bài Hát",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "bundle_5songs_600k",
+      "referenceName" : "Bundle 5 Songs",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "1000000",
+      "familySharable" : false,
+      "internalID" : "bundle_10songs_1000k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Gói 10 bài hát (tiết kiệm 500,000đ)",
+          "displayName" : "Gói 10 Bài Hát",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "bundle_10songs_1000k",
+      "referenceName" : "Bundle 10 Songs",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "1800000",
+      "familySharable" : false,
+      "internalID" : "bundle_20songs_1800k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Gói 20 bài hát (tiết kiệm 1,200,000đ)",
+          "displayName" : "Gói 20 Bài Hát",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "bundle_20songs_1800k",
+      "referenceName" : "Bundle 20 Songs",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "2990000",
+      "familySharable" : false,
+      "internalID" : "lifetime_all_2990k",
+      "introductoryOffer" : null,
+      "localizations" : [
+        {
+          "description" : "Tất cả khóa học + 20 bài hát + cập nhật + hỗ trợ ưu tiên",
+          "displayName" : "🌟 Trọn Bộ Lifetime",
+          "locale" : "vi_VN"
+        }
+      ],
+      "productID" : "lifetime_all_2990k",
+      "referenceName" : "Lifetime All Access",
+      "type" : "NonConsumable"
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

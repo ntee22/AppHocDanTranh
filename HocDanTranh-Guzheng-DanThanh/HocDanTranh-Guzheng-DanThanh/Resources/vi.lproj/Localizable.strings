@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings - Vietnamese (Tiếng Việt)
+  Dan Thanh Guzheng
+*/
+
+// MARK: - Welcome & Hero
+"welcome_to" = "Chào mừng đến với";
+"app_name" = "Đàn Tranh Đan Thanh";
+"hero_subtitle" = "Bắt đầu hành trình khám phá nghệ thuật Đàn Tranh cổ xưa";
+
+// MARK: - Tab Bar
+"tab_lessons" = "Bài Học";
+"tab_tuner" = "Chỉnh Dây";
+"tab_sheet_music" = "Bản Nhạc";
+
+// MARK: - Lessons
+"course_lessons" = "Các Bài Học Khóa Học";
+"lesson" = "Bài";
+"free" = "Miễn Phí";
+"unlocked" = "Đã Mở Khóa";
+
+// MARK: - Premium Status
+"premium_student" = "Học Viên Premium";
+"full_access_message" = "Bạn có quyền truy cập đầy đủ vào tất cả 12 bài học";
+
+// MARK: - Lesson Detail
+"about_this_lesson" = "Về Bài Học Này";
+"what_you_will_learn" = "Nội Dung Bài Học";
+"practice_tips" = "Mẹo Luyện Tập";
+
+// MARK: - Practice Tips
+"practice_tips_content" = "• Luyện tập chậm lúc đầu, tập trung vào kỹ thuật đúng\n• Sử dụng metronome để duy trì nhịp điệu đều\n• Nghỉ giải lao mỗi 20-30 phút\n• Ghi âm để theo dõi tiến độ";
+
+// MARK: - Purchase Sheet
+"unlock_full_course" = "Mở Khóa Toàn Bộ Khóa Học";
+"lifetime_access_subtitle" = "Truy cập trọn đời tất cả 12 bài học";
+"buy_button" = "Mua Khóa Học 3 Tháng";
+"restore_purchase" = "Khôi Phục Giao Dịch";
+
+// MARK: - Benefits
+"benefit_12_lessons" = "12 Bài Học Toàn Diện";
+"benefit_12_lessons_desc" = "Từ cơ bản đến nâng cao";
+"benefit_high_quality" = "Video Chất Lượng Cao";
+"benefit_high_quality_desc" = "Hình ảnh và âm thanh rõ nét";
+"benefit_lifetime" = "Truy Cập Trọn Đời";
+"benefit_lifetime_desc" = "Học theo tốc độ của bạn, mãi mãi";
+"benefit_expert" = "Giảng Dạy Chuyên Nghiệp";
+"benefit_expert_desc" = "Học từ giáo viên Đàn Tranh chuyên nghiệp";
+
+// MARK: - Placeholders
+"coming_soon" = "Sắp Ra Mắt";
+"guzheng_tuner" = "Chỉnh Dây Đàn Tranh";
+"tuner_description" = "Công cụ chỉnh dây chuyên nghiệp giúp bạn giữ Đàn Tranh luôn ở âm chuẩn";
+"sheet_music_library" = "Thư Viện Bản Nhạc";
+"sheet_music_description" = "Truy cập bộ sưu tập bản nhạc Đàn Tranh truyền thống và hiện đại";
+
+// MARK: - Video Player
+"loading_lesson" = "Đang tải bài học...";
+"retry" = "Thử Lại";
+"failed_to_load_video" = "Không thể tải video";
+
+// MARK: - Errors
+"purchase_failed" = "Thanh Toán Thất Bại";
+"ok" = "Đồng Ý";
+"no_previous_purchases" = "Không tìm thấy giao dịch trước đó";
+
+// MARK: - Lesson Titles (Vietnamese)
+"lesson_1_title" = "Giới Thiệu Về Đàn Tranh";
+"lesson_1_subtitle" = "Lịch sử và các bộ phận của đàn";
+"lesson_2_title" = "Tư Thế Tay Đúng Chuẩn";
+"lesson_2_subtitle" = "Học nền tảng để tạo âm thanh đẹp";
+"lesson_3_title" = "Kỹ Thuật Gảy Cơ Bản";
+"lesson_3_subtitle" = "Kỹ thuật 托 (Tuō) và 劈 (Pī)";
+"lesson_4_title" = "Đọc Bản Nhạc Đàn Tranh";
+"lesson_4_subtitle" = "Hiểu ký hiệu số truyền thống";
+"lesson_5_title" = "Giai Điệu Đầu Tiên";
+"lesson_5_subtitle" = "Chơi \"Ngôi Sao Nhỏ\" (小星星)";
+"lesson_6_title" = "Kỹ Thuật Tremolo (摇指)";
+"lesson_6_subtitle" = "Làm chủ âm thanh tremolo trôi chảy";
+"lesson_7_title" = "Kỹ Thuật Glissando & Trượt";
+"lesson_7_subtitle" = "Thêm cảm xúc với kỹ thuật trượt dây";
+"lesson_8_title" = "Chơi Giai Điệu Truyền Thống";
+"lesson_8_subtitle" = "Học \"Bài Ca Người Đánh Cá Lúc Hoàng Hôn\"";
+"lesson_9_title" = "Kỹ Thuật Tay Phải Nâng Cao";
+"lesson_9_subtitle" = "Kết hợp và đoạn chơi nhanh";
+"lesson_10_title" = "Biểu Cảm Tay Trái";
+"lesson_10_subtitle" = "Kỹ thuật rung (揉弦) và bẻ dây";
+"lesson_11_title" = "Luyện Tập Biểu Diễn";
+"lesson_11_subtitle" = "Phong thái sân khấu và cảm xúc âm nhạc";
+"lesson_12_title" = "Bài Độc Tấu Cuối Khóa";
+"lesson_12_subtitle" = "Biểu diễn \"Núi Cao, Nước Chảy\"";

@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings - English
+  Dan Thanh Guzheng
+*/
+
+// MARK: - Welcome & Hero
+"welcome_to" = "Welcome to";
+"app_name" = "Dan Thanh Guzheng";
+"hero_subtitle" = "Begin your journey into the ancient art of Guzheng";
+
+// MARK: - Tab Bar
+"tab_lessons" = "Lessons";
+"tab_tuner" = "Tuner";
+"tab_sheet_music" = "Sheet Music";
+
+// MARK: - Lessons
+"course_lessons" = "Course Lessons";
+"lesson" = "Lesson";
+"free" = "Free";
+"unlocked" = "Unlocked";
+
+// MARK: - Premium Status
+"premium_student" = "Premium Student";
+"full_access_message" = "You have full access to all 12 lessons";
+
+// MARK: - Lesson Detail
+"about_this_lesson" = "About This Lesson";
+"what_you_will_learn" = "What You'll Learn";
+"practice_tips" = "Practice Tips";
+
+// MARK: - Practice Tips
+"practice_tips_content" = "• Practice slowly at first, focusing on proper technique\n• Use a metronome to maintain steady rhythm\n• Take breaks every 20-30 minutes\n• Record yourself to track progress";
+
+// MARK: - Purchase Sheet
+"unlock_full_course" = "Unlock Full Course";
+"lifetime_access_subtitle" = "Get lifetime access to all 12 lessons";
+"buy_button" = "Buy 3-Month Course";
+"restore_purchase" = "Restore Purchase";
+
+// MARK: - Benefits
+"benefit_12_lessons" = "12 Comprehensive Lessons";
+"benefit_12_lessons_desc" = "From beginner to advanced techniques";
+"benefit_high_quality" = "High-Quality Videos";
+"benefit_high_quality_desc" = "Crystal clear demonstrations";
+"benefit_lifetime" = "Lifetime Access";
+"benefit_lifetime_desc" = "Learn at your own pace, forever";
+"benefit_expert" = "Expert Instruction";
+"benefit_expert_desc" = "Learn from master Guzheng teachers";
+
+// MARK: - Placeholders
+"coming_soon" = "Coming Soon";
+"guzheng_tuner" = "Guzheng Tuner";
+"tuner_description" = "A professional tuner to help you keep your Guzheng in perfect pitch";
+"sheet_music_library" = "Sheet Music Library";
+"sheet_music_description" = "Access a curated collection of traditional and modern Guzheng sheet music";
+
+// MARK: - Video Player
+"loading_lesson" = "Loading lesson...";
+"retry" = "Retry";
+"failed_to_load_video" = "Failed to load video";
+
+// MARK: - Errors
+"purchase_failed" = "Purchase Failed";
+"ok" = "OK";
+"no_previous_purchases" = "No previous purchases found";
+
+// MARK: - Lesson Titles
+"lesson_1_title" = "Introduction to Guzheng";
+"lesson_1_subtitle" = "History and parts of the instrument";
+"lesson_2_title" = "Proper Hand Position";
+"lesson_2_subtitle" = "Learn the foundation of beautiful sound";
+"lesson_3_title" = "Basic Plucking Techniques";
+"lesson_3_subtitle" = "托 (Tuō) and 劈 (Pī) techniques";
+"lesson_4_title" = "Reading Guzheng Notation";
+"lesson_4_subtitle" = "Understanding traditional numbered notation";
+"lesson_5_title" = "Your First Melody";
+"lesson_5_subtitle" = "Play \"Little Star\" (小星星)";
+"lesson_6_title" = "Tremolo Technique (摇指)";
+"lesson_6_subtitle" = "Master the flowing tremolo sound";
+"lesson_7_title" = "Glissando & Slides";
+"lesson_7_subtitle" = "Add expression with sliding techniques";
+"lesson_8_title" = "Playing Traditional Melodies";
+"lesson_8_subtitle" = "Learn \"Fisherman's Song at Dusk\"";
+"lesson_9_title" = "Advanced Right Hand Techniques";
+"lesson_9_subtitle" = "Combinations and fast passages";
+"lesson_10_title" = "Left Hand Expression";
+"lesson_10_subtitle" = "Vibrato (揉弦) and bending techniques";
+"lesson_11_title" = "Performance Practice";
+"lesson_11_subtitle" = "Stage presence and musicality";
+"lesson_12_title" = "Final Recital Piece";
+"lesson_12_subtitle" = "Perform \"High Mountains, Flowing Water\"";

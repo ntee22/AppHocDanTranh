@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>Ứng dụng KHÔNG truy cập camera. Quyền này tồn tại vì thư viện phát hiện cao độ âm thanh có liên kết một API media-capture chung, nhưng tính năng camera không bao giờ được kích hoạt.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Ứng dụng cần truy cập microphone để phát hiện cao độ âm thanh, phục vụ tính năng lên dây đàn tranh.</string>
+</dict>
+</plist>
