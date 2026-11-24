@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.DanThanh" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <!-- Window background matches the launch screen's dark wood (#2A2520) so the first
+         frame before Compose draws is not a white flash. -->
+    <style name="Theme.DanThanh" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/launch_background</item>
+    </style>
 </resources>

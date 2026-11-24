@@ -1,6 +1,7 @@
 package vn.hocdantranh.guzheng.ui.sheet
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import me.saket.telephoto.zoomable.coil.ZoomableAsyncImage
 import me.saket.telephoto.zoomable.rememberZoomableImageState
 import me.saket.telephoto.zoomable.rememberZoomableState
 import vn.hocdantranh.guzheng.R
+import vn.hocdantranh.guzheng.ui.theme.VintageColors
 import vn.hocdantranh.guzheng.data.sheet.directImageUrl
 
 /**
@@ -64,15 +66,18 @@ fun SheetPageZoomScreen(url: String, pageNumber: Int, onClose: () -> Unit) {
                 Modifier
                     .size(36.dp)
                     .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.18f))
+                    // Solid app sage, not translucent white: the button often sits over
+                    // the white sheet page, where white-on-white disappeared.
+                    .background(VintageColors.sageDark)
+                    .border(1.dp, VintageColors.paper.copy(alpha = 0.6f), CircleShape)
                     .clickable(onClick = onClose),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     Icons.Filled.Close,
                     contentDescription = stringResource(R.string.sheet_zoom_close),
-                    tint = Color.White,
-                    modifier = Modifier.size(16.dp),
+                    tint = VintageColors.paper,
+                    modifier = Modifier.size(18.dp),
                 )
             }
 
