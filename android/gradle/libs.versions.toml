@@ -18,6 +18,9 @@ googleServices = "4.4.2"
 firebaseBom = "33.7.0"
 coil = "2.7.0"
 telephoto = "0.15.1"
+billing = "8.3.0"
+playReview = "2.0.2"
+tarsosDsp = "2.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +50,9 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 telephoto-zoomable-image-coil = { group = "me.saket.telephoto", name = "zoomable-image-coil", version.ref = "telephoto" }
+play-billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
+play-review-ktx = { group = "com.google.android.play", name = "review-ktx", version.ref = "playReview" }
+tarsos-dsp-core = { group = "be.tarsos.dsp", name = "core", version.ref = "tarsosDsp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

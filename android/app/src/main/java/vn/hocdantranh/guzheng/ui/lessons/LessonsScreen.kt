@@ -96,6 +96,7 @@ fun LessonsScreen(
             ) { index, lesson ->
                 LessonRow(
                     lesson = lesson,
+                    access = state.accessOf(lesson),
                     isLast = index == state.lessons.lastIndex,
                     onClick = { onLessonClick(lesson) },
                     modifier = Modifier.padding(horizontal = 18.dp),

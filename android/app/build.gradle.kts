@@ -109,6 +109,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.play.services)
     implementation(libs.coil.compose)
     implementation(libs.telephoto.zoomable.image.coil)
+    implementation(libs.play.billing.ktx)
+    implementation(libs.play.review.ktx)
+    implementation(libs.tarsos.dsp.core)
 
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)

@@ -41,6 +41,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import vn.hocdantranh.guzheng.R
 import vn.hocdantranh.guzheng.data.lesson.Lesson
+import vn.hocdantranh.guzheng.data.lesson.LessonAccess
+import vn.hocdantranh.guzheng.ui.billing.CoursePurchaseCard
 import vn.hocdantranh.guzheng.ui.components.BrushDivider
 import vn.hocdantranh.guzheng.ui.components.OverlineLabel
 import vn.hocdantranh.guzheng.ui.components.PaperBackground
@@ -69,7 +71,12 @@ fun LessonDetailRoute(
     }
 
     if (lesson != null) {
-        LessonDetailScreen(lesson = lesson, onBack = onBack, modifier = modifier)
+        LessonDetailScreen(
+            lesson = lesson,
+            access = state.accessOf(lesson),
+            onBack = onBack,
+            modifier = modifier,
+        )
     }
 }
 
@@ -78,6 +85,7 @@ fun LessonDetailScreen(
     lesson: Lesson,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    access: LessonAccess = LessonAccess.resolve(lesson, iapEnabled = false, ownsCourse = false),
     videoContent: @Composable (Lesson) -> Unit = { YouTubeLessonPlayer(it.videoId) },
 ) {
     Box(modifier.fillMaxSize()) {
@@ -88,7 +96,7 @@ fun LessonDetailScreen(
 
             LazyColumn(Modifier.fillMaxSize()) {
                 item {
-                    if (lesson.isFree) {
+                    if (access.isPlayable) {
                         Box(
                             Modifier
                                 .fillMaxWidth()
@@ -97,11 +105,15 @@ fun LessonDetailScreen(
                         ) {
                             videoContent(lesson)
                         }
+                    } else if (access == LessonAccess.LOCKED) {
+                        // Unreachable while FeatureFlags.IAP_ENABLED is false — resolve()
+                        // never returns LOCKED then.
+                        CoursePurchaseCard()
                     } else {
                         ComingSoonCard()
                     }
                 }
-                item { DetailBody(lesson) }
+                item { DetailBody(lesson, access) }
             }
         }
     }
@@ -127,12 +139,13 @@ private fun DetailTopBar(lesson: Lesson, onBack: () -> Unit) {
         }
 
         Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
+            val number = "%02d".format(lesson.lessonNumber)
             OverlineLabel(
-                text = stringResource(
-                    R.string.lesson_detail_prefix,
-                    "%02d".format(lesson.lessonNumber),
-                    lesson.duration,
-                )
+                text = if (lesson.duration.isBlank()) {
+                    stringResource(R.string.lesson_detail_prefix_no_duration, number)
+                } else {
+                    stringResource(R.string.lesson_detail_prefix, number, lesson.duration)
+                }
             )
         }
 
@@ -194,7 +207,7 @@ private fun ComingSoonCard() {
 // ---- Body ----
 
 @Composable
-private fun DetailBody(lesson: Lesson) {
+private fun DetailBody(lesson: Lesson, access: LessonAccess) {
     val context = LocalContext.current
 
     val description = lesson.description.ifBlank {
@@ -213,7 +226,7 @@ private fun DetailBody(lesson: Lesson) {
             .padding(horizontal = 24.dp)
             .padding(bottom = 32.dp)
     ) {
-        StatusLine(lesson)
+        StatusLine(lesson, access)
 
         Text(
             text = lesson.title,
@@ -271,18 +284,15 @@ private fun DetailBody(lesson: Lesson) {
 }
 
 @Composable
-private fun StatusLine(lesson: Lesson) {
+private fun StatusLine(lesson: Lesson, access: LessonAccess) {
     Row(
         Modifier.padding(top = 20.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        val accent = if (lesson.isFree) VintageColors.sageDark else VintageColors.inkMuted
+        val accent = if (access.isPlayable) VintageColors.sageDark else VintageColors.inkMuted
         Text(
-            text = stringResource(
-                if (lesson.isFree) R.string.lesson_badge_free_marked
-                else R.string.lesson_badge_coming_soon_marked
-            ).uppercase(),
+            text = stringResource(access.markedBadgeRes).uppercase(),
             modifier = Modifier
                 .clip(RoundedCornerShape(50))
                 .background(accent.copy(alpha = 0.12f))

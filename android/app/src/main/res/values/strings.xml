@@ -122,4 +122,56 @@
     <string name="settings_footer_tagline">Made with 💚 &amp; ☕ in Việt Nam</string>
     <string name="settings_footer_copyright">© 2025 Đan Thanh Đàn Tranh</string>
     <string name="settings_open_failed">Không mở được liên kết</string>
+
+    <!-- Paid lessons. Only visible when FeatureFlags.IAP_ENABLED is true. -->
+    <string name="lesson_detail_prefix_no_duration">Bài %1$s</string>
+    <string name="lesson_badge_unlocked">Đã mở khóa</string>
+    <string name="lesson_badge_unlocked_marked">✦ Đã mở khóa</string>
+    <string name="lesson_badge_premium">Khóa học</string>
+    <string name="lesson_badge_premium_marked">🔒 Khóa học</string>
+    <string name="purchase_course_title">Khóa Học Cơ Bản</string>
+    <string name="purchase_course_body">Mở khóa toàn bộ bài 8–16, xem lại không giới hạn.</string>
+    <string name="purchase_course_button">Mở khóa khóa học</string>
+    <string name="purchase_course_button_price">Mở khóa · %1$s</string>
+    <string name="purchase_restore">Khôi phục giao dịch</string>
+    <string name="settings_restore_subtitle">Đã mua trên tài khoản Google Play này</string>
+
+    <!-- Tuner. Vietnamese copy is verbatim from iOS TunerView.swift. -->
+    <string name="tuner_overline">調音 · Tuner</string>
+    <string name="tuner_title">Lên dây</string>
+    <string name="tuner_listening">🎙️ Đang nhận âm</string>
+    <string name="tuner_waiting">👂 Lắng nghe...</string>
+    <string name="tuner_string_prefix">"Dây "</string>
+    <string name="tuner_status_reference">♪ Đang phát mẫu...</string>
+    <string name="tuner_status_locked">✓ Đã đúng!</string>
+    <string name="tuner_status_in_tune">✅ Đúng rồi!</string>
+    <string name="tuner_status_tighten">🔼 Căng thêm +%1$d¢</string>
+    <string name="tuner_status_loosen">🔽 Nới bớt -%1$d¢</string>
+    <string name="tuner_flat">♭ thấp</string>
+    <string name="tuner_sharp">♯ cao</string>
+    <string name="tuner_strings_overline">Dây · 21 strings</string>
+    <string name="tuner_high_marker">Cao ↑</string>
+    <string name="tuner_legend">Dây La (5/A) — dây xanh định vị 💚</string>
+    <string name="tuner_mic_title">Cần quyền micro 🎙️</string>
+    <string name="tuner_mic_body">App cần nghe tiếng đàn để đo cao độ. Âm thanh chỉ được xử lý trên máy, không ghi lại hay gửi đi đâu.</string>
+    <string name="tuner_mic_button">Cho phép micro</string>
+    <string name="tuner_guide_title">Cách lên dây</string>
+    <string name="tuner_guide_step1_title">Tự động lắng nghe</string>
+    <string name="tuner_guide_step1_body">Mặc định app luôn nghe. Đánh vào dây thật, app sẽ tự nhận diện cao độ.</string>
+    <string name="tuner_guide_step2_title">Căng thêm hay nới bớt</string>
+    <string name="tuner_guide_step2_body">Nhìn kim trên thước: lệch phải là cao (♯ nới bớt), lệch trái là thấp (♭ căng thêm). Vào giữa, xanh là đúng.</string>
+    <string name="tuner_guide_step3_title">Chỉnh riêng một dây</string>
+    <string name="tuner_guide_step3_body">Bấm vào một dây bất kỳ để khoá nghe riêng dây đó.</string>
+    <string name="tuner_guide_step4_title">Quay về tự động</string>
+    <string name="tuner_guide_step4_body">Bấm lại đúng dây đang chọn để trở về chế độ nghe tự động.</string>
+    <string name="tuner_guide_start">BẮT ĐẦU LÊN DÂY</string>
+    <string name="tuner_guide_never">Không hiện lần sau</string>
+    <string name="settings_section_tuner">Lên dây</string>
+    <string name="settings_tuner_sensitivity">Độ nhạy tuner</string>
+    <string name="settings_sensitivity_low">Thấp</string>
+    <string name="settings_sensitivity_medium">Vừa</string>
+    <string name="settings_sensitivity_high">Cao</string>
+    <string name="settings_sensitivity_hint_low">Khóa chậm — ổn định nhất, ít báo nhầm.</string>
+    <string name="settings_sensitivity_hint_medium">Tốc độ khóa cân bằng — khuyến nghị.</string>
+    <string name="settings_sensitivity_hint_high">Khóa nhanh — phản hồi nhanh nhưng có thể báo sớm.</string>
 </resources>

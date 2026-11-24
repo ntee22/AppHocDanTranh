@@ -111,4 +111,56 @@
     <string name="settings_footer_tagline">Made with 💚 &amp; ☕ in Việt Nam</string>
     <string name="settings_footer_copyright">© 2025 Đan Thanh Đàn Tranh</string>
     <string name="settings_open_failed">Couldn\'t open the link</string>
+
+    <!-- Paid lessons. Only visible when FeatureFlags.IAP_ENABLED is true. -->
+    <string name="lesson_detail_prefix_no_duration">Lesson %1$s</string>
+    <string name="lesson_badge_unlocked">Unlocked</string>
+    <string name="lesson_badge_unlocked_marked">✦ Unlocked</string>
+    <string name="lesson_badge_premium">Course</string>
+    <string name="lesson_badge_premium_marked">🔒 Course</string>
+    <string name="purchase_course_title">Basic Course</string>
+    <string name="purchase_course_body">Unlock lessons 8–16, watch them as often as you like.</string>
+    <string name="purchase_course_button">Unlock the course</string>
+    <string name="purchase_course_button_price">Unlock · %1$s</string>
+    <string name="purchase_restore">Restore purchases</string>
+    <string name="settings_restore_subtitle">Purchased on this Google Play account</string>
+
+    <!-- Tuner -->
+    <string name="tuner_overline">調音 · Tuner</string>
+    <string name="tuner_title">Tune</string>
+    <string name="tuner_listening">🎙️ Listening</string>
+    <string name="tuner_waiting">👂 Waiting...</string>
+    <string name="tuner_string_prefix">"String "</string>
+    <string name="tuner_status_reference">♪ Reference playing...</string>
+    <string name="tuner_status_locked">✓ Locked!</string>
+    <string name="tuner_status_in_tune">✅ In tune!</string>
+    <string name="tuner_status_tighten">🔼 Tighten +%1$d¢</string>
+    <string name="tuner_status_loosen">🔽 Loosen -%1$d¢</string>
+    <string name="tuner_flat">♭ flat</string>
+    <string name="tuner_sharp">♯ sharp</string>
+    <string name="tuner_strings_overline">Strings · 21 strings</string>
+    <string name="tuner_high_marker">High ↑</string>
+    <string name="tuner_legend">String La (5/A) — green reference string 💚</string>
+    <string name="tuner_mic_title">Microphone access needed 🎙️</string>
+    <string name="tuner_mic_body">The tuner listens to your strings to measure pitch. Audio is processed on this device only — never recorded or sent anywhere.</string>
+    <string name="tuner_mic_button">Allow microphone</string>
+    <string name="tuner_guide_title">How to tune</string>
+    <string name="tuner_guide_step1_title">Always listening</string>
+    <string name="tuner_guide_step1_body">The app listens by default. Pluck a real string and it detects the pitch.</string>
+    <string name="tuner_guide_step2_title">Tighten or loosen</string>
+    <string name="tuner_guide_step2_body">Watch the needle: right means sharp (♯ loosen), left means flat (♭ tighten). Centred and green is in tune.</string>
+    <string name="tuner_guide_step3_title">Tune one string</string>
+    <string name="tuner_guide_step3_body">Tap any string to lock onto it.</string>
+    <string name="tuner_guide_step4_title">Back to automatic</string>
+    <string name="tuner_guide_step4_body">Tap the selected string again to return to auto-detect.</string>
+    <string name="tuner_guide_start">START TUNING</string>
+    <string name="tuner_guide_never">Don\'t show again</string>
+    <string name="settings_section_tuner">Tuner</string>
+    <string name="settings_tuner_sensitivity">Tuner sensitivity</string>
+    <string name="settings_sensitivity_low">Low</string>
+    <string name="settings_sensitivity_medium">Medium</string>
+    <string name="settings_sensitivity_high">High</string>
+    <string name="settings_sensitivity_hint_low">Locks slowly — most stable, avoids false matches.</string>
+    <string name="settings_sensitivity_hint_medium">Balanced lock speed — recommended.</string>
+    <string name="settings_sensitivity_hint_high">Locks quickly — very responsive but can match briefly.</string>
 </resources>

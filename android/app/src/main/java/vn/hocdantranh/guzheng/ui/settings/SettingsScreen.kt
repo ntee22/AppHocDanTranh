@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,6 +30,8 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.PlayCircle
+import androidx.compose.material.icons.filled.Restore
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
@@ -54,6 +58,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import vn.hocdantranh.guzheng.BuildConfig
 import vn.hocdantranh.guzheng.R
+import vn.hocdantranh.guzheng.data.prefs.AppPrefs
 import vn.hocdantranh.guzheng.ui.components.InkSeal
 import vn.hocdantranh.guzheng.ui.components.OverlineLabel
 import vn.hocdantranh.guzheng.ui.components.PaperBackground
@@ -68,6 +73,9 @@ private val ShopeeOrange = Color(0xFFEE4D2D)
 fun SettingsRoute(
     language: String,
     onLanguageChange: (String) -> Unit,
+    tunerSensitivity: String = AppPrefs.SENSITIVITY_MEDIUM,
+    onTunerSensitivityChange: (String) -> Unit = {},
+    onRestorePurchases: (() -> Unit)? = null,
 ) {
     val context = LocalContext.current
     val openFailed = stringResource(R.string.settings_open_failed)
@@ -82,6 +90,9 @@ fun SettingsRoute(
         language = language,
         versionName = BuildConfig.VERSION_NAME,
         onLanguageChange = onLanguageChange,
+        tunerSensitivity = tunerSensitivity,
+        onTunerSensitivityChange = onTunerSensitivityChange,
+        onRestorePurchases = onRestorePurchases,
         onOpenUrl = { url -> context.openUrl(url, openFailed) },
         onRate = { context.openPlayStore(openFailed) },
         onShare = { context.shareText(shareText, shareChooser, openFailed) },
@@ -98,6 +109,9 @@ fun SettingsScreen(
     onRate: () -> Unit,
     onShare: () -> Unit,
     onEmail: () -> Unit,
+    tunerSensitivity: String = AppPrefs.SENSITIVITY_MEDIUM,
+    onTunerSensitivityChange: (String) -> Unit = {},
+    onRestorePurchases: (() -> Unit)? = null,
 ) {
     Box(Modifier.fillMaxSize()) {
         PaperBackground()
@@ -171,6 +185,23 @@ fun SettingsScreen(
                     title = stringResource(R.string.settings_feedback_title),
                     subtitle = stringResource(R.string.settings_feedback_subtitle),
                     onClick = onEmail,
+                )
+                if (onRestorePurchases != null) {
+                    SettingsRow(
+                        icon = Icons.Filled.Restore,
+                        iconColor = VintageColors.sageDark,
+                        title = stringResource(R.string.purchase_restore),
+                        subtitle = stringResource(R.string.settings_restore_subtitle),
+                        onClick = onRestorePurchases,
+                    )
+                }
+            }
+
+            // Same position as iOS: between "App" and "Info".
+            SettingsSection(title = stringResource(R.string.settings_section_tuner)) {
+                TunerSensitivitySelector(
+                    selected = tunerSensitivity,
+                    onSelect = onTunerSensitivityChange,
                 )
             }
 
@@ -294,6 +325,92 @@ private fun LanguageButton(
             fontSize = 15.sp,
             fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal,
             fontFamily = FontFamily.Serif,
+        )
+    }
+}
+
+/** iOS "Độ nhạy tuner": three-way segmented control plus a hint for the chosen tier. */
+@Composable
+private fun TunerSensitivitySelector(selected: String, onSelect: (String) -> Unit) {
+    val options = listOf(
+        AppPrefs.SENSITIVITY_LOW to R.string.settings_sensitivity_low,
+        AppPrefs.SENSITIVITY_MEDIUM to R.string.settings_sensitivity_medium,
+        AppPrefs.SENSITIVITY_HIGH to R.string.settings_sensitivity_high,
+    )
+    val hint = when (selected) {
+        AppPrefs.SENSITIVITY_LOW -> R.string.settings_sensitivity_hint_low
+        AppPrefs.SENSITIVITY_HIGH -> R.string.settings_sensitivity_hint_high
+        else -> R.string.settings_sensitivity_hint_medium
+    }
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(
+                Modifier
+                    .size(36.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(VintageColors.sageDark.copy(alpha = 0.15f)),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(Icons.Filled.Tune, contentDescription = null, tint = VintageColors.sageDark, modifier = Modifier.size(19.dp))
+            }
+            Text(
+                text = stringResource(R.string.settings_tuner_sensitivity),
+                color = VintageColors.inkDark,
+                fontSize = 17.sp,
+                fontFamily = FontFamily.Serif,
+            )
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .height(IntrinsicSize.Min)
+                .clip(RoundedCornerShape(10.dp))
+                .background(VintageColors.paperWarm.copy(alpha = 0.55f))
+                .border(1.dp, VintageColors.inkMuted.copy(alpha = 0.2f), RoundedCornerShape(10.dp)),
+        ) {
+            options.forEachIndexed { index, (value, label) ->
+                if (index > 0) {
+                    Box(
+                        Modifier
+                            .width(1.dp)
+                            .fillMaxHeight()
+                            .background(VintageColors.inkMuted.copy(alpha = 0.2f))
+                    )
+                }
+                val isSelected = value == selected
+                val bg by animateColorAsState(
+                    if (isSelected) VintageColors.sageDark else Color.Transparent,
+                    label = "sensitivityBg",
+                )
+                Text(
+                    text = stringResource(label),
+                    modifier = Modifier
+                        .weight(1f)
+                        .background(bg)
+                        .clickable { onSelect(value) }
+                        .padding(vertical = 10.dp),
+                    color = if (isSelected) VintageColors.paper else VintageColors.inkSoft,
+                    fontSize = 14.sp,
+                    fontFamily = FontFamily.Serif,
+                    fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+        Text(
+            text = stringResource(hint),
+            color = VintageColors.inkMuted,
+            fontSize = 12.sp,
+            fontFamily = FontFamily.Serif,
+            fontStyle = FontStyle.Italic,
         )
     }
 }

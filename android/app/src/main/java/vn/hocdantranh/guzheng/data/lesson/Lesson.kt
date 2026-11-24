@@ -13,7 +13,12 @@ data class Lesson(
     /** The English title. iOS shows this beneath [title] in both locales. */
     val subtitle: String,
     val thumbnailUrl: String,
+    /** Blank until the lesson is recorded; see [isReleased]. */
     val videoId: String,
+    /**
+     * Access tier: free, or part of the paid course. This does NOT mean playable — a free
+     * lesson with no video is still "coming soon". Use [LessonAccess] to decide what to show.
+     */
     val isFree: Boolean,
     /** Human-readable running time, e.g. "12:30". */
     val duration: String,
@@ -28,4 +33,7 @@ data class Lesson(
     val practiceTips: List<String> = emptyList(),
     val whatYoullLearn: List<String> = emptyList(),
     val funFact: String? = null,
-)
+) {
+    /** The video exists. Until then the lesson shows as "coming soon" whatever its tier. */
+    val isReleased: Boolean get() = videoId.isNotBlank()
+}

@@ -7,6 +7,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
+import vn.hocdantranh.guzheng.FeatureFlags
+import vn.hocdantranh.guzheng.data.billing.BillingRepository
 import vn.hocdantranh.guzheng.data.prefs.AppPrefs
 import vn.hocdantranh.guzheng.ui.LocaleController
 
@@ -24,9 +26,15 @@ fun SettingsTabRoute() {
     val scope = rememberCoroutineScope()
     val prefs = remember(context) { AppPrefs(context.applicationContext) }
     val language by prefs.language.collectAsState(initial = AppPrefs.DEFAULT)
+    val sensitivity by prefs.tunerSensitivity.collectAsState(initial = AppPrefs.SENSITIVITY_MEDIUM)
+    val billing = remember(context) { BillingRepository.get(context) }
 
     SettingsRoute(
         language = language,
+        tunerSensitivity = sensitivity,
+        onTunerSensitivityChange = { value -> scope.launch { prefs.setTunerSensitivity(value) } },
+        // Null hides the row: Apple and Google only expect a restore entry once selling is on.
+        onRestorePurchases = if (FeatureFlags.IAP_ENABLED) billing::restore else null,
         onLanguageChange = { code ->
             scope.launch {
                 prefs.setLanguage(code)

@@ -7,76 +7,48 @@ import org.junit.Test
 
 /**
  * The catalog is the Android mirror of iOS `Lesson.mockLessons()`.
- * These assertions pin the invariants the UI relies on: the progress ring divides by
- * the free-lesson count, and the detail screen only reaches for a player when a
- * lesson is free — so a free lesson without a video ID would render a dead player.
+ * These assertions pin the invariants the UI relies on: released lessons have a video to
+ * play, and the free/paid split matches the course Kelvin plans to sell (7 free, 8–16 paid).
  */
 class LessonCatalogTest {
 
     private val lessons = LessonCatalog.lessons
 
     @Test
-    fun `ships ten lessons`() {
-        assertEquals(10, lessons.size)
+    fun `ships sixteen lessons numbered in order`() {
+        assertEquals((1..16).toList(), lessons.map { it.lessonNumber })
     }
 
     @Test
-    fun `numbers lessons one through ten in order`() {
-        assertEquals((1..10).toList(), lessons.map { it.lessonNumber })
+    fun `lessons one to seven are free and eight to sixteen are paid`() {
+        assertEquals((1..7).toList(), lessons.filter { it.isFree }.map { it.lessonNumber })
+        assertEquals((8..16).toList(), lessons.filterNot { it.isFree }.map { it.lessonNumber })
     }
 
     @Test
-    fun `marks exactly six lessons free`() {
-        assertEquals(6, lessons.count { it.isFree })
+    fun `only the first six are released`() {
+        assertEquals((1..6).toList(), lessons.filter { it.isReleased }.map { it.lessonNumber })
     }
 
     @Test
-    fun `free lessons are the first six`() {
-        assertEquals((1..6).toList(), lessons.filter { it.isFree }.map { it.lessonNumber })
-    }
-
-    @Test
-    fun `every free lesson has a playable YouTube video`() {
-        lessons.filter { it.isFree }.forEach { lesson ->
-            assertTrue(
-                "Lesson ${lesson.lessonNumber} is free but has a blank videoId",
-                lesson.videoId.isNotBlank()
-            )
-            assertTrue(
-                "Lesson ${lesson.lessonNumber} is free but is not marked isYouTube",
-                lesson.isYouTube
-            )
+    fun `every released lesson has a playable YouTube video and a duration`() {
+        lessons.filter { it.isReleased }.forEach { lesson ->
+            assertTrue("Lesson ${lesson.lessonNumber} is not marked isYouTube", lesson.isYouTube)
+            assertTrue("Lesson ${lesson.lessonNumber} has a blank duration", lesson.duration.isNotBlank())
         }
     }
 
     @Test
-    fun `locked lessons have no video to play`() {
-        lessons.filterNot { it.isFree }.forEach { lesson ->
-            assertTrue(
-                "Lesson ${lesson.lessonNumber} is locked but carries a videoId",
-                lesson.videoId.isBlank()
-            )
-        }
-    }
-
-    @Test
-    fun `every lesson has a title, subtitle and duration`() {
+    fun `every lesson has a title and subtitle`() {
         lessons.forEach { lesson ->
             assertTrue("Lesson ${lesson.lessonNumber} has a blank title", lesson.title.isNotBlank())
-            assertTrue(
-                "Lesson ${lesson.lessonNumber} has a blank subtitle",
-                lesson.subtitle.isNotBlank()
-            )
-            assertTrue(
-                "Lesson ${lesson.lessonNumber} has a blank duration",
-                lesson.duration.isNotBlank()
-            )
+            assertTrue("Lesson ${lesson.lessonNumber} has a blank subtitle", lesson.subtitle.isNotBlank())
         }
     }
 
     @Test
-    fun `free lessons carry the teaching content the detail screen renders`() {
-        lessons.filter { it.isFree }.forEach { lesson ->
+    fun `released lessons carry the teaching content the detail screen renders`() {
+        lessons.filter { it.isReleased }.forEach { lesson ->
             assertFalse(
                 "Lesson ${lesson.lessonNumber} has no whatYoullLearn items",
                 lesson.whatYoullLearn.isEmpty()

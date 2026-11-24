@@ -34,6 +34,7 @@ import vn.hocdantranh.guzheng.ui.sheet.SheetPageZoomScreen
 import vn.hocdantranh.guzheng.ui.sheet.SheetRoute
 import vn.hocdantranh.guzheng.ui.sheet.SheetViewModel
 import vn.hocdantranh.guzheng.ui.sheet.SheetViewerScreen
+import vn.hocdantranh.guzheng.ui.tuner.TunerRoute
 import vn.hocdantranh.guzheng.ui.video.VideoRoute
 import vn.hocdantranh.guzheng.ui.theme.VintageColors
 
@@ -181,18 +182,9 @@ fun MainScaffold() {
                 SettingsTabRoute()
             }
 
-            Destination.entries
-                .filterNot {
-                    it == Destination.LESSONS ||
-                        it == Destination.VIDEO ||
-                        it == Destination.SHEET ||
-                        it == Destination.SETTINGS
-                }
-                .forEach { destination ->
-                    composable(destination.route) {
-                        PlaceholderScreen(title = stringResource(destination.labelRes))
-                    }
-                }
+            composable(Destination.TUNER.route) {
+                TunerRoute()
+            }
         }
     }
 }

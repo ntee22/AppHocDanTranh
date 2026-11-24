@@ -7,8 +7,10 @@ package vn.hocdantranh.guzheng.data.lesson
  * English title and the surrounding chrome is what gets localized. Translating the bodies
  * would mean inventing English copy that has no iOS counterpart.
  *
- * Lessons 1–6 are free and stream from YouTube. Lessons 7–10 are unreleased: they show the
- * "coming soon" card and deliberately carry no video ID.
+ * Lessons 1–6 are free and stream from YouTube. Lessons 7–16 are unreleased: they carry no
+ * video ID, so they show the "coming soon" card. Lesson 7 will be free; 8–16 belong to the
+ * paid course (`course_basic_1490k`) and stay "coming soon" until [FeatureFlags.IAP_ENABLED]
+ * is on — see [LessonAccess].
  */
 object LessonCatalog {
 
@@ -151,46 +153,96 @@ object LessonCatalog {
             funFact = "Lướt dây là kỹ thuật 'signature' của Guzheng mà không nhạc cụ nào khác tạo ra được y hệt! Trong tiếng Trung nó được gọi là 刮奏 (guā zòu) — nghe như tiếng mưa rào hay suối chảy vậy 🌊"
         ),
 
-        // ---- Coming soon (7–10) ----
+        // ---- Coming soon (7–16). 7 is free; 8–16 are the paid course. ----
         Lesson(
             lessonNumber = 7,
-            title = "Hướng dẫn bài Nụ Hồng Mong Manh",
-            subtitle = "Fragile Rose Bud Song",
+            title = "Hướng dẫn Nụ Hồng Mong Manh",
+            subtitle = "Fragile Rose Bud — Song Tutorial",
             thumbnailUrl = "",
             videoId = "",
-            isFree = false,
-            duration = "16:20",
-            description = "Bài hát trữ tình với giai điệu nhẹ nhàng, là bài thực hành tổng hợp các kỹ thuật đã học."
+            isFree = true,
+            duration = "",
         ),
         Lesson(
             lessonNumber = 8,
-            title = "Hướng dẫn Sứ Thanh Hoa",
-            subtitle = "Blue and White Porcelain",
+            title = "Bài học ngón 4 tay phải và ngón cái đánh ngược",
+            subtitle = "Right-Hand 4th Finger & Reverse Thumb",
             thumbnailUrl = "",
             videoId = "",
             isFree = false,
-            duration = "15:10",
-            description = "Bản nhạc nổi tiếng của Jay Chou, được chuyển soạn đặc biệt cho Guzheng."
+            duration = "",
         ),
         Lesson(
             lessonNumber = 9,
-            title = "Hướng dẫn đánh Tân Uyên Ương Hồ Điệp",
-            subtitle = "Butterfly Lovers Concerto",
+            title = "Hướng dẫn Si Fa",
+            subtitle = "The Si & Fa Presses",
             thumbnailUrl = "",
             videoId = "",
             isFree = false,
-            duration = "14:00",
-            description = "Tác phẩm kinh điển lãng mạn của nhạc Hoa, phù hợp sau khi nắm vững kỹ thuật cơ bản."
+            duration = "",
         ),
         Lesson(
             lessonNumber = 10,
-            title = "Hướng dẫn nhấn Si Fa",
-            subtitle = "Si Fa Press Technique",
+            title = "Áp dụng Si Fa: Ánh trăng nói hộ lòng tôi",
+            subtitle = "Si Fa in Practice — The Moon Represents My Heart",
             thumbnailUrl = "",
             videoId = "",
             isFree = false,
-            duration = "12:30",
-            description = "Kỹ thuật nhấn nâng cao giúp mở rộng âm vực và biểu cảm trong các bài nhạc phức tạp."
+            duration = "",
+        ),
+        Lesson(
+            lessonNumber = 11,
+            title = "Kỹ thuật tay trái",
+            subtitle = "Left-Hand Techniques",
+            thumbnailUrl = "",
+            videoId = "",
+            isFree = false,
+            duration = "",
+        ),
+        Lesson(
+            lessonNumber = 12,
+            title = "Hoạt âm",
+            subtitle = "Pitch Slides",
+            thumbnailUrl = "",
+            videoId = "",
+            isFree = false,
+            duration = "",
+        ),
+        Lesson(
+            lessonNumber = 13,
+            title = "Vê dây",
+            subtitle = "Tremolo",
+            thumbnailUrl = "",
+            videoId = "",
+            isFree = false,
+            duration = "",
+        ),
+        Lesson(
+            lessonNumber = 14,
+            title = "Thực hành vê dây, bài hát",
+            subtitle = "Tremolo Practice & Song",
+            thumbnailUrl = "",
+            videoId = "",
+            isFree = false,
+            duration = "",
+        ),
+        Lesson(
+            lessonNumber = 15,
+            title = "Hợp âm rải",
+            subtitle = "Arpeggios",
+            thumbnailUrl = "",
+            videoId = "",
+            isFree = false,
+            duration = "",
+        ),
+        Lesson(
+            lessonNumber = 16,
+            title = "Thực hành hợp âm rải và bài hát",
+            subtitle = "Arpeggio Practice & Song",
+            thumbnailUrl = "",
+            videoId = "",
+            isFree = false,
+            duration = "",
         ),
     )
 }

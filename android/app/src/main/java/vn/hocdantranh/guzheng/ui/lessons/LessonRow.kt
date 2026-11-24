@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import vn.hocdantranh.guzheng.R
 import vn.hocdantranh.guzheng.data.lesson.Lesson
+import vn.hocdantranh.guzheng.data.lesson.LessonAccess
 import vn.hocdantranh.guzheng.ui.components.LessonAccent
 import vn.hocdantranh.guzheng.ui.components.LessonThumb
 import vn.hocdantranh.guzheng.ui.theme.VintageColors
@@ -40,6 +41,7 @@ private val DividerInset = 106.dp
 @Composable
 fun LessonRow(
     lesson: Lesson,
+    access: LessonAccess,
     isLast: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -55,7 +57,7 @@ fun LessonRow(
             LessonThumb(
                 number = "%02d".format(lesson.lessonNumber),
                 titleEn = lesson.subtitle,
-                locked = !lesson.isFree,
+                locked = !access.isPlayable,
                 accent = LessonAccent.forLesson(lesson.lessonNumber),
                 lockedContentDescription = stringResource(R.string.lesson_locked),
                 modifier = Modifier.width(92.dp),
@@ -65,7 +67,7 @@ fun LessonRow(
                 Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(3.dp),
             ) {
-                MetadataLine(lesson)
+                MetadataLine(lesson, access)
 
                 Text(
                     text = lesson.title,
@@ -107,22 +109,22 @@ fun LessonRow(
     }
 }
 
-/** `MIỄN PHÍ · 8:45` — free lessons in sage, unreleased ones in muted ink. */
+/** `MIỄN PHÍ · 8:45` — playable lessons in sage, the rest in muted ink. */
 @Composable
-private fun MetadataLine(lesson: Lesson) {
+private fun MetadataLine(lesson: Lesson, access: LessonAccess) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = stringResource(
-                if (lesson.isFree) R.string.lesson_badge_free else R.string.lesson_badge_coming_soon
-            ).uppercase(),
-            color = if (lesson.isFree) VintageColors.sageDark else VintageColors.inkMuted,
+            text = stringResource(access.badgeRes).uppercase(),
+            color = if (access.isPlayable) VintageColors.sageDark else VintageColors.inkMuted,
             fontSize = 9.sp,
             fontWeight = FontWeight.Bold,
             letterSpacing = 1.5.sp,
         )
+        // Unrecorded lessons have no running time yet.
+        if (lesson.duration.isBlank()) return@Row
         Text(
             text = "·",
             color = VintageColors.inkMuted.copy(alpha = 0.6f),
@@ -137,3 +139,21 @@ private fun MetadataLine(lesson: Lesson) {
         )
     }
 }
+
+/** Short badge for the list row. Only [LessonAccess.LOCKED] mentions payment. */
+internal val LessonAccess.badgeRes: Int
+    get() = when (this) {
+        LessonAccess.FREE -> R.string.lesson_badge_free
+        LessonAccess.PURCHASED -> R.string.lesson_badge_unlocked
+        LessonAccess.LOCKED -> R.string.lesson_badge_premium
+        LessonAccess.COMING_SOON -> R.string.lesson_badge_coming_soon
+    }
+
+/** Badge with its leading mark, for the detail screen. */
+internal val LessonAccess.markedBadgeRes: Int
+    get() = when (this) {
+        LessonAccess.FREE -> R.string.lesson_badge_free_marked
+        LessonAccess.PURCHASED -> R.string.lesson_badge_unlocked_marked
+        LessonAccess.LOCKED -> R.string.lesson_badge_premium_marked
+        LessonAccess.COMING_SOON -> R.string.lesson_badge_coming_soon_marked
+    }
