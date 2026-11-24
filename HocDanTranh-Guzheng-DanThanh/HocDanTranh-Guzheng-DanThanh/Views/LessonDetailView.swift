@@ -39,7 +39,9 @@ struct LessonDetailView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                OverlineLabel(text: "Bài \(String(format: "%02d", lesson.lessonNumber)) · \(lesson.duration)")
+                OverlineLabel(text: lesson.duration.isEmpty
+                    ? "Bài \(String(format: "%02d", lesson.lessonNumber))"
+                    : "Bài \(String(format: "%02d", lesson.lessonNumber)) · \(lesson.duration)")
             }
         }
         .onAppear {
@@ -49,14 +51,60 @@ struct LessonDetailView: View {
 
     // MARK: - Video Section
 
+    private var access: LessonAccess { viewModel.access(for: lesson) }
+
     @ViewBuilder
     private var videoSection: some View {
-        if lesson.isFree {
+        if access.isPlayable {
             LessonVideoPlayer(videoID: lesson.videoID)
                 .frame(height: 200)
                 .background(Color.black)
+        } else if access == .locked {
+            // Unreachable while FeatureFlags.iapEnabled is false — resolve() never
+            // returns .locked then.
+            lockedCard
         } else {
             comingSoonCard
+        }
+    }
+
+    @State private var showPurchaseSheet = false
+
+    private var lockedCard: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "lock.circle.fill")
+                .font(.system(size: 60))
+                .foregroundColor(Color.sageDark)
+            Text(isEnglish ? "Basic Course" : "Khóa Học Cơ Bản")
+                .font(.system(size: 22, weight: .medium, design: .serif))
+                .foregroundColor(Color.inkDark)
+            Text(isEnglish
+                 ? "Unlock lessons 8–16, watch them as often as you like."
+                 : "Mở khóa toàn bộ bài 8–16, xem lại không giới hạn.")
+                .font(.system(size: 14))
+                .foregroundColor(Color.inkSoft)
+                .multilineTextAlignment(.center)
+            Button { showPurchaseSheet = true } label: {
+                Text(isEnglish ? "Unlock the course" : "Mở khóa khóa học")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(Color.paper)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color.sageDark)
+                    .clipShape(Capsule())
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.horizontal, 24)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 40)
+        .background(Color.paper)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.horizontal, 18)
+        .padding(.top, 16)
+        .sheet(isPresented: $showPurchaseSheet) {
+            PurchaseBottomSheet(lesson: lesson, isPresented: $showPurchaseSheet)
+                .environmentObject(viewModel)
         }
     }
 
@@ -92,14 +140,14 @@ struct LessonDetailView: View {
         VStack(alignment: .leading, spacing: 0) {
             // Status badge + duration
             HStack(spacing: 10) {
-                Text(lesson.isFree ? "✦ Miễn phí" : "⏳ Coming Soon")
+                Text(access.markedBadge(isEnglish: isEnglish))
                     .font(.system(size: 10, weight: .bold))
                     .kerning(2)
-                    .foregroundColor(lesson.isFree ? Color.sageDark : Color.inkMuted)
+                    .foregroundColor(access.isPlayable ? Color.sageDark : Color.inkMuted)
                     .padding(.horizontal, 9)
                     .padding(.vertical, 3)
                     .background(
-                        (lesson.isFree ? Color.sageDark : Color.inkMuted).opacity(0.12)
+                        (access.isPlayable ? Color.sageDark : Color.inkMuted).opacity(0.12)
                     )
                     .clipShape(Capsule())
 

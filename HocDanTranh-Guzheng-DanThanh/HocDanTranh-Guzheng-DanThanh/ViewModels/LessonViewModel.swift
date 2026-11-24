@@ -28,19 +28,27 @@ class LessonViewModel: ObservableObject {
         paymentManager.hasPurchasedCourse
     }
 
-    /// Number of free lessons the user has actually opened
+    func access(for lesson: Lesson) -> LessonAccess {
+        LessonAccess.resolve(lesson, iapEnabled: FeatureFlags.iapEnabled, ownsCourse: hasPurchasedCourse)
+    }
+
+    private var playableLessons: [Lesson] {
+        lessons.filter { access(for: $0).isPlayable }
+    }
+
+    /// Number of playable lessons the user has actually opened
     var completedFreeCount: Int {
-        lessons.filter { $0.isFree && openedLessonNumbers.contains($0.lessonNumber) }.count
+        playableLessons.filter { openedLessonNumbers.contains($0.lessonNumber) }.count
     }
 
-    /// Total number of free (playable) lessons
+    /// Total number of playable lessons — the progress ring's denominator
     var freeLessonsCount: Int {
-        lessons.filter { $0.isFree }.count
+        playableLessons.count
     }
 
-    /// Next free lesson the user hasn't opened yet; nil when all are done
+    /// Next playable lesson the user hasn't opened yet; nil when all are done
     var nextLesson: Lesson? {
-        lessons.first { $0.isFree && !openedLessonNumbers.contains($0.lessonNumber) }
+        playableLessons.first { !openedLessonNumbers.contains($0.lessonNumber) }
     }
 
     // MARK: - Initialization
@@ -66,12 +74,12 @@ class LessonViewModel: ObservableObject {
     }
 
     func isLessonAccessible(_ lesson: Lesson) -> Bool {
-        lesson.isFree || paymentManager.hasPurchasedCourse
+        access(for: lesson).isPlayable
     }
 
-    /// Call when the user opens a free lesson — persists progress
+    /// Call when the user opens a lesson — persists progress for playable ones only
     func markOpened(_ lesson: Lesson) {
-        guard lesson.isFree else { return }
+        guard access(for: lesson).isPlayable else { return }
         openedLessonNumbers.insert(lesson.lessonNumber)
         UserDefaults.standard.set(Array(openedLessonNumbers), forKey: openedKey)
     }

@@ -538,12 +538,15 @@ private struct PageZoomView: View {
             VStack {
                 HStack {
                     Button { dismiss() } label: {
+                        // Solid app sage, not translucent white: the button often sits
+                        // over the white sheet page, where white-on-white disappeared.
                         Image(systemName: "xmark")
-                            .font(.system(size: 15, weight: .semibold))
-                            .foregroundColor(.white)
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(Color.paper)
                             .frame(width: 36, height: 36)
-                            .background(Color.white.opacity(0.18))
+                            .background(Color.sageDark)
                             .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.paper.opacity(0.6), lineWidth: 1))
                     }
                     Spacer()
                     Text("Trang \(pageNumber)")

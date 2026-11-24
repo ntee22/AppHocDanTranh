@@ -62,7 +62,8 @@ class PaymentManager: ObservableObject {
 
     // Convenience accessors
     var hasPurchasedCourse: Bool {
-        purchasedProductIDs.contains(IAPProductID.courseBasic) ||
+        guard FeatureFlags.iapEnabled else { return false }
+        return purchasedProductIDs.contains(IAPProductID.courseBasic) ||
         purchasedProductIDs.contains(IAPProductID.lifetimeAll)
     }
 
@@ -73,6 +74,8 @@ class PaymentManager: ObservableObject {
     // MARK: - Initialization
 
     private init() {
+        // Selling is off: never touch StoreKit, so this build has no IAP surface at all.
+        guard FeatureFlags.iapEnabled else { return }
         Task {
             await loadProducts()
             await updatePurchasedProducts()
@@ -97,6 +100,7 @@ class PaymentManager: ObservableObject {
     // MARK: - Purchase
 
     func purchase(_ productID: String) async throws {
+        guard FeatureFlags.iapEnabled else { throw PaymentError.productNotFound }
         guard let product = product(for: productID) else {
             throw PaymentError.productNotFound
         }
@@ -129,6 +133,7 @@ class PaymentManager: ObservableObject {
     // MARK: - Restore
 
     func restorePurchases() async throws {
+        guard FeatureFlags.iapEnabled else { return }
         isProcessing = true
         defer { isProcessing = false }
         try await AppStore.sync()

@@ -13,7 +13,10 @@ struct Lesson: Identifiable, Codable, Hashable {
     let title: String
     let subtitle: String
     let thumbnailURL: String
+    /// Empty until the lesson is recorded; see `isReleased`.
     let videoID: String
+    /// Access tier: free, or part of the paid course. This does NOT mean playable — a free
+    /// lesson with no video is still "coming soon". Use `LessonAccess` to decide what to show.
     let isFree: Bool
     let duration: String // e.g., "12:30"
     let lessonNumber: Int
@@ -57,6 +60,11 @@ struct Lesson: Identifiable, Codable, Hashable {
         self.whatYoullLearn = whatYoullLearn
         self.funFact = funFact
     }
+}
+
+extension Lesson {
+    /// The video exists. Until then the lesson shows as "coming soon" whatever its tier.
+    var isReleased: Bool { !videoID.isEmpty }
 }
 
 // MARK: - Lesson Data
@@ -195,46 +203,87 @@ extension Lesson {
                 funFact: "Lướt dây là kỹ thuật 'signature' của Guzheng mà không nhạc cụ nào khác tạo ra được y hệt! Trong tiếng Trung nó được gọi là 刮奏 (guā zòu) — nghe như tiếng mưa rào hay suối chảy vậy 🌊"
             ),
 
-            // MARK: Coming Soon (7–10)
+            // MARK: Coming Soon (7–16) — 7 is free; 8–16 are the paid course
+            // (`course_basic_1490k`) and stay "coming soon" while FeatureFlags.iapEnabled is false.
             Lesson(
                 lessonNumber: 7,
-                title: "Hướng dẫn bài Nụ Hồng Mong Manh",
-                subtitle: "Fragile Rose Bud Song",
+                title: "Hướng dẫn Nụ Hồng Mong Manh",
+                subtitle: "Fragile Rose Bud — Song Tutorial",
                 thumbnailURL: "",
                 videoID: "",
-                isFree: false, duration: "16:20",
-                isYouTube: false, isPortrait: true,
-                description: "Bài hát trữ tình với giai điệu nhẹ nhàng, là bài thực hành tổng hợp các kỹ thuật đã học."
+                isFree: true, duration: ""
             ),
             Lesson(
                 lessonNumber: 8,
-                title: "Hướng dẫn Sứ Thanh Hoa",
-                subtitle: "Blue and White Porcelain",
+                title: "Bài học ngón 4 tay phải và ngón cái đánh ngược",
+                subtitle: "Right-Hand 4th Finger & Reverse Thumb",
                 thumbnailURL: "",
                 videoID: "",
-                isFree: false, duration: "15:10",
-                isYouTube: false, isPortrait: true,
-                description: "Bản nhạc nổi tiếng của Jay Chou, được chuyển soạn đặc biệt cho Guzheng."
+                isFree: false, duration: ""
             ),
             Lesson(
                 lessonNumber: 9,
-                title: "Hướng dẫn đánh Tân Uyên Ương Hồ Điệp",
-                subtitle: "Butterfly Lovers Concerto",
+                title: "Hướng dẫn Si Fa",
+                subtitle: "The Si & Fa Presses",
                 thumbnailURL: "",
                 videoID: "",
-                isFree: false, duration: "14:00",
-                isYouTube: false, isPortrait: true,
-                description: "Tác phẩm kinh điển lãng mạn của nhạc Hoa, phù hợp sau khi nắm vững kỹ thuật cơ bản."
+                isFree: false, duration: ""
             ),
             Lesson(
                 lessonNumber: 10,
-                title: "Hướng dẫn nhấn Si Fa",
-                subtitle: "Si Fa Press Technique",
+                title: "Áp dụng Si Fa: Ánh trăng nói hộ lòng tôi",
+                subtitle: "Si Fa in Practice — The Moon Represents My Heart",
                 thumbnailURL: "",
                 videoID: "",
-                isFree: false, duration: "12:30",
-                isYouTube: false, isPortrait: true,
-                description: "Kỹ thuật nhấn nâng cao giúp mở rộng âm vực và biểu cảm trong các bài nhạc phức tạp."
+                isFree: false, duration: ""
+            ),
+            Lesson(
+                lessonNumber: 11,
+                title: "Kỹ thuật tay trái",
+                subtitle: "Left-Hand Techniques",
+                thumbnailURL: "",
+                videoID: "",
+                isFree: false, duration: ""
+            ),
+            Lesson(
+                lessonNumber: 12,
+                title: "Hoạt âm",
+                subtitle: "Pitch Slides",
+                thumbnailURL: "",
+                videoID: "",
+                isFree: false, duration: ""
+            ),
+            Lesson(
+                lessonNumber: 13,
+                title: "Vê dây",
+                subtitle: "Tremolo",
+                thumbnailURL: "",
+                videoID: "",
+                isFree: false, duration: ""
+            ),
+            Lesson(
+                lessonNumber: 14,
+                title: "Thực hành vê dây, bài hát",
+                subtitle: "Tremolo Practice & Song",
+                thumbnailURL: "",
+                videoID: "",
+                isFree: false, duration: ""
+            ),
+            Lesson(
+                lessonNumber: 15,
+                title: "Hợp âm rải",
+                subtitle: "Arpeggios",
+                thumbnailURL: "",
+                videoID: "",
+                isFree: false, duration: ""
+            ),
+            Lesson(
+                lessonNumber: 16,
+                title: "Thực hành hợp âm rải và bài hát",
+                subtitle: "Arpeggio Practice & Song",
+                thumbnailURL: "",
+                videoID: "",
+                isFree: false, duration: ""
             ),
         ]
     }

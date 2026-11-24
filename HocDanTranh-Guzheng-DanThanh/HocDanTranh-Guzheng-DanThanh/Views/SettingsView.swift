@@ -203,6 +203,18 @@ struct SettingsView: View {
                                 UIApplication.shared.open(url)
                             }
                         }
+
+                        // Required by App Review once the course is sold; hidden until then.
+                        if FeatureFlags.iapEnabled {
+                            SettingsRow(
+                                icon: "arrow.clockwise.circle.fill",
+                                iconColor: Color.sageDark,
+                                title: isEnglish ? "Restore purchases" : "Khôi phục giao dịch",
+                                subtitle: isEnglish ? "Bought on this Apple ID" : "Đã mua trên Apple ID này"
+                            ) {
+                                Task { try? await PaymentManager.shared.restorePurchases() }
+                            }
+                        }
                     }
 
                     // ── Section 3: Tuner ──

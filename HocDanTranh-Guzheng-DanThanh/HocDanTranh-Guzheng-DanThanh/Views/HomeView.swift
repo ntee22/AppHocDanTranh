@@ -261,6 +261,8 @@ struct HomeView: View {
             ForEach(Array(viewModel.lessons.enumerated()), id: \.element.id) { idx, lesson in
                 LessonRow(
                     lesson: lesson,
+                    access: viewModel.access(for: lesson),
+                    isEnglish: isEnglish,
                     isLast: idx == viewModel.lessons.count - 1
                 )
                 .onTapGesture {
@@ -285,6 +287,8 @@ struct HomeView: View {
 
 struct LessonRow: View {
     let lesson: Lesson
+    let access: LessonAccess
+    let isEnglish: Bool
     let isLast: Bool
 
     private var accent: LessonAccent {
@@ -299,7 +303,7 @@ struct LessonRow: View {
             LessonThumb(
                 number: String(format: "%02d", lesson.lessonNumber),
                 titleEn: "",
-                locked: !lesson.isFree,
+                locked: !access.isPlayable,
                 accent: accent
             )
             .frame(width: 92)
@@ -307,17 +311,20 @@ struct LessonRow: View {
             // Text info
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 4) {
-                    Text(!lesson.isFree ? "Coming Soon" : "Miễn phí")
+                    Text(access.badge(isEnglish: isEnglish))
                         .font(.system(size: 9, weight: .bold))
                         .kerning(1.5)
-                        .foregroundColor(!lesson.isFree ? Color.inkMuted : Color.sageDark)
-                    Text("·")
-                        .font(.system(size: 9))
-                        .foregroundColor(Color.inkMuted.opacity(0.6))
-                    Text(lesson.duration)
-                        .font(.system(size: 9, weight: .bold))
-                        .kerning(1.5)
-                        .foregroundColor(Color.inkMuted)
+                        .foregroundColor(access.isPlayable ? Color.sageDark : Color.inkMuted)
+                    // Unrecorded lessons have no running time yet.
+                    if !lesson.duration.isEmpty {
+                        Text("·")
+                            .font(.system(size: 9))
+                            .foregroundColor(Color.inkMuted.opacity(0.6))
+                        Text(lesson.duration)
+                            .font(.system(size: 9, weight: .bold))
+                            .kerning(1.5)
+                            .foregroundColor(Color.inkMuted)
+                    }
                 }
                 .textCase(.uppercase)
 
